@@ -2,28 +2,40 @@
 const sum = (a,b) => {
     return a + b
 }
-
 // solo un registro en consola para nosotros.
 console.log(sum(7,3))
 
-// exporta la función para usarla en otros archivos 
-// (similar a la palabra clave `export` cuando se usa webpack)
-module.exports = { sum };
 
-// we declare the function with the exact name "fromEuroToDollar"
-const fromEuroToDollar = function(valueInEuro){
-    // convert the given valueInEuro to dollars
-    let valueInDollar = valueInEuro * 1.2;
-    //return the doller value
-    return valueInDollar;
+// one euro is:
+let oneEuroIs = {
+    "JPY": 127.9, // japan yen
+    "USD": 1.2, // us dollar
+    "GBP": 0.8, // british pound
 }
-
-const fromEuroToYen = function(valueInEuro){
-     let valueInYen = valueInEuro * 127.9;
+//fromDollarToYen	------------------------------------
+const fromDollartoEuro = function(valueInDolar){
+    let valueInEuro = Math.floor(valueInDolar / oneEuroIs.USD);
+    return valueInEuro;
+}
+const fromDollarToYen = function(valueInDollar){     
+     let valueInYen = fromDollartoEuro(valueInDollar) * oneEuroIs.JPY;
      return valueInYen;
 }
-const fromEuroToBritishPound = function(valueInEuro){
-     let valueInBp = valueInEuro * 0.8;
+//fromEuroToDollar------------------------------------
+const fromEuroToDollar = function(valueInEuro){
+    let valueInDollar = valueInEuro * oneEuroIs.USD;
+    return valueInDollar;
+}
+//fromYenToPound------------------------------------
+const fromYentoEuro = function(valueInYen){
+    let valueInEuro = Math.floor(valueInYen / oneEuroIs.JPY);
+    return valueInEuro;
+}
+const fromYenToPound = function(valueInYen){
+     let valueInBp = fromYentoEuro(valueInYen) * oneEuroIs.GBP;
      return valueInBp;
 }
-module.exports = { sum, fromEuroToDollar,fromEuroToYen,fromEuroToBritishPound }
+// exporta la función para usarla en otros archivos 
+// (similar a la palabra clave `export` cuando se usa webpack)
+module.exports = { sum, fromDollarToYen,fromEuroToDollar,fromYenToPound }
+
