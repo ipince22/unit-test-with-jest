@@ -11,7 +11,7 @@ test('adds 14 + 9 to equal 23', () => {
 });
 
 //*****************Dollar*************************** 
-test("One euro should be 1.206 dollars", function(){
+test("One euro should be 1.2 dollars", function(){
     // importo la funcion desde app.js
     const { fromEuroToDollar } = require('./app.js')
 
@@ -28,7 +28,7 @@ test("One euro should be 1.206 dollars", function(){
 test("100 dolares should be 127900 yens", function(){
     // importo la funcion desde app.js
     const { fromDollarToYen } = require('./app.js')
-
+    
     // utilizo la function de la forma como se espera que funcione
     const yens = fromDollarToYen(100)
 
